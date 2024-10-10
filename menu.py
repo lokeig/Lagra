@@ -1,4 +1,5 @@
 from User import *
+import json
 
 def start():
     print("\nOptions")
@@ -34,6 +35,7 @@ def loginScreen(users):
             if (compareUsername(newUser.getUsername(), users)):
                 users.append(newUser)
                 userID = len(users)-1
+                updateJson(users)
                 break
             else:
                 print("Username already taken")
@@ -45,8 +47,7 @@ def loginScreen(users):
             else:
                 print("Invalid username or password")
         else:
-            print("Invalid input")
-            
+            print("Invalid input")   
     return (userID)
     
 def mainScreen(userID, users):
@@ -59,9 +60,11 @@ def mainScreen(userID, users):
             
         elif (choice == "2"):
             currentUser.addData()
-
+            updateJson(users)
+            
         elif (choice == "3"):
             currentUser.deleteData()
+            updateJson(users)
         
         elif (choice == "4"):
             allItems = ""
@@ -73,4 +76,3 @@ def mainScreen(userID, users):
                 print("Current objects: " + allItems)
             else:
                 print("You have no items")
-

@@ -1,3 +1,5 @@
+import json
+
 class User:
     def __init__(self, username, password, data):
         self.username = username
@@ -10,8 +12,6 @@ class User:
         p = str(input("Enter password: "))
         d = []
         return person(u, p, d)
-    
-    
     def getPassword(self):
         return self.password
     
@@ -60,4 +60,34 @@ def compareUsername(name, arr):
             if (name == arr[n].getUsername()):
                 new = False
     return new
+
+def updateJson(users):
+    userList = []
+    for n in range(len(users)):
+        userJson = {
+            "username": users[n].getUsername(),
+            "password": users[n].getPassword(),
+            "data": users[n].getData()
+        }
+        userList.append(userJson)
         
+    with open("users.json", "w") as outfile:
+        json.dump(userList, outfile, indent = 4)
+        
+def loadJson(filename):
+    users = []
+    try:
+        with open(filename, "r") as infile:
+            jsonList = json.load(infile)
+        if isinstance(jsonList, list):
+            for userData in jsonList:
+                user = User(
+                    username=userData["username"],
+                    password = userData["password"],
+                    data = userData["data"]
+                )
+                users.append(user)
+    except json.JSONDecodeError and FileNotFoundError:
+        with open(filename, "w") as outfile:
+            json.dump([], outfile)
+    return users
