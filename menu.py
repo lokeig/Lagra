@@ -55,8 +55,8 @@ def loginScreen(users):
 def mainScreen(userID, users):
     while True:
         loggedInScreen()
-        currentUser = users[userID]
         choice = input("Choice: ")
+        currentUser = users[userID]
         if (choice == "1"):
             break
             

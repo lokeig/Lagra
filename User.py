@@ -5,7 +5,7 @@ class User:
         self.username = username
         self.password = password
         self.data = data
-
+    
     def getPassword(self):
         return self.password
     
@@ -49,8 +49,8 @@ class User:
     
 def newName(name, arr):
     new = True
-    for users in arr:
-        if (name == arr[users].getUsername()):
+    for n in range(len(arr)):
+        if (name == arr[n].getUsername()):
             new = False
     return new
 
