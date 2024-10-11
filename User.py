@@ -5,13 +5,7 @@ class User:
         self.username = username
         self.password = password
         self.data = data
-        
-    @classmethod
-    def create(person):
-        u = str(input("Enter username: "))
-        p = str(input("Enter password: "))
-        d = []
-        return person(u, p, d)
+
     def getPassword(self):
         return self.password
     
@@ -53,12 +47,11 @@ class User:
         else:
             print("\nNo items to delete")
     
-def compareUsername(name, arr):
+def newName(name, arr):
     new = True
-    if (len(arr) > 0):
-        for n in range(0, len(arr)-1):
-            if (name == arr[n].getUsername()):
-                new = False
+    for users in arr:
+        if (name == arr[users].getUsername()):
+            new = False
     return new
 
 def updateJson(users):

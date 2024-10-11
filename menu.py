@@ -31,8 +31,10 @@ def loginScreen(users):
         start()
         choice = input("Choice: ")      
         if (choice == "1"):
-            newUser = User.create()
-            if (compareUsername(newUser.getUsername(), users)):
+            u = str(input("Enter username: "))
+            p = str(input("Enter password: "))
+            if (newName(u, users)):
+                newUser = User(u, p, [])
                 users.append(newUser)
                 userID = len(users)-1
                 updateJson(users)
@@ -53,8 +55,8 @@ def loginScreen(users):
 def mainScreen(userID, users):
     while True:
         loggedInScreen()
-        choice = input("Choice: ")
         currentUser = users[userID]
+        choice = input("Choice: ")
         if (choice == "1"):
             break
             
