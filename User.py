@@ -80,7 +80,7 @@ def loadJson(filename):
                     data = userData["data"]
                 )
                 users.append(user)
-    except json.JSONDecodeError and FileNotFoundError:
+    except (json.JSONDecodeError, FileNotFoundError):
         with open(filename, "w") as outfile:
             json.dump([], outfile)
     return users
